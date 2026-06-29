@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pranathi Akula — Java Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a22;
+    --card: #1c2130;
+    --border: rgba(255,255,255,0.07);
+    --accent: #4f8ef7;
+    --accent2: #7c6af7;
+    --text: #e8eaf0;
+    --muted: #8b90a0;
+    --tag-bg: rgba(79,142,247,0.12);
+    --tag-border: rgba(79,142,247,0.3);
+    --tag-text: #8ab4f8;
+    --sans: 'Inter', sans-serif;
+    --serif: 'Playfair Display', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(13,15,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-inner { text-align: center; max-width: 720px; position: relative; }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 .name-accent { color: var(--accent); }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #3d7bf5; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: var(--card); border-color: rgba(255,255,255,0.18); }
+  .hero-contacts {
+    display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+  .hero-contacts a {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .hero-contacts a:hover { color: var(--accent); }
+
+  /* SECTION */
+  section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+    max-width: 540px;
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p { color: #b8bcc8; line-height: 1.85; margin-bottom: 1rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .stat-card .num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-card .label { font-size: 0.8rem; color: var(--muted); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+  }
+  .skill-group-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: 5px;
+    padding: 0.2rem 0.55rem;
+  }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 1.5rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -1.5rem; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(79,142,247,0.25);
+  }
+  .tl-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.2rem; }
+  .tl-title { font-weight: 600; font-size: 1rem; }
+  .tl-date {
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 100px;
+    padding: 0.15rem 0.75rem;
+    white-space: nowrap;
+  }
+  .tl-company { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .tl-list { list-style: none; }
+  .tl-list li {
+    font-size: 0.88rem;
+    color: #9ca3af;
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.35rem;
+    line-height: 1.65;
+  }
+  .tl-list li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.18rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: rgba(79,142,247,0.4); transform: translateY(-3px); }
+  .project-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(79,142,247,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .project-name { font-weight: 600; font-size: 1rem; margin-bottom: 0.6rem; }
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; flex: 1; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.2rem; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: auto;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.55rem; }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+  }
+  .edu-icon { font-size: 1.4rem; color: var(--accent2); margin-bottom: 0.75rem; }
+  .edu-school { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .edu-degree { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem; }
+  .edu-meta { display: flex; justify-content: space-between; align-items: center; }
+  .edu-score {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(79,142,247,0.1);
+    border-radius: 100px;
+    padding: 0.15rem 0.65rem;
+  }
+  .edu-year { font-size: 0.8rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact-box {
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-box::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .contact-box p { color: var(--muted); margin-bottom: 2rem; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--muted);
+    background: var(--surface);
+    transition: all 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); border-color: rgba(79,142,247,0.3); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.2rem; }
+  }
+</style>
+
+<!-- Premium upgrade note -->
+<style>
+body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);background-size:400% 400%;animation:bgMove 15s ease infinite;cursor:none}
+@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.cursor,.cursor2{position:fixed;pointer-events:none;z-index:99999;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor{width:12px;height:12px;background:#4f8ef7;box-shadow:0 0 20px #4f8ef7}
+.cursor2{width:36px;height:36px;border:2px solid #4f8ef7;transition:.15s}
+.hidden{opacity:0;transform:translateY(40px);transition:1s}.show{opacity:1;transform:none}
+@media(max-width:992px){.about-grid{grid-template-columns:1fr}.projects-grid,.skills-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.projects-grid,.skills-grid,.edu-grid{grid-template-columns:1fr}.hero-contacts,.contact-links{flex-direction:column}.btn{width:100%;justify-content:center}}
+@media(max-width:480px){.about-stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Pranathi<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-badge">Available for opportunities</div>
+    <h1>
+      Hi, I'm <span class="name-accent">Pranathi Akula</span><br/>Java Full Stack Developer
+    </h1>
+    <p class="hero-tagline">
+      Building secure, scalable enterprise applications — from Angular frontends to Spring Boot APIs and relational databases.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#projects"><i class="fas fa-folder-open"></i> View Projects</a>
+      <a class="btn btn-secondary" href="#contact"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+    </div>
+    <div class="hero-contacts">
+      <a href="mailto:pranathiakula35@gmail.com"><i class="fas fa-envelope"></i> pranathiakula35@gmail.com</a>
+      <a href="https://www.linkedin.com/in/pranathi-a-ap170304" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/pranathi1703" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="tel:9182479664"><i class="fas fa-phone"></i> +91 9182479664</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <div class="section-title">Who I am</div>
+  <p class="section-sub">A motivated developer who loves building things that work end-to-end.</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a Java Full Stack Developer currently working at Cognizant Technology Solutions as a Programmer Analyst Trainee,
+        where I support and maintain enterprise EDI and ERP Java-based applications in production environments.
+      </p>
+      <p>
+        My stack spans Angular frontends, Spring Boot REST APIs, and relational databases (MySQL, PostgreSQL).
+        I'm comfortable across the full delivery lifecycle — from architecture decisions and API design to
+        incident management and Agile sprints.
+      </p>
+      <p>
+        I graduated with a B.Tech in Information Technology (CGPA 8.67) from GIET Engineering College and
+        am actively looking for full stack developer roles where I can contribute to high-quality software delivery.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="num">2+</div>
+        <div class="label">Internships completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">3</div>
+        <div class="label">Full stack projects built</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">8.67</div>
+        <div class="label">B.Tech CGPA</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">5+</div>
+        <div class="label">Sorting algorithms visualized</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Skills</div>
+  <div class="section-title">My tech stack</div>
+  <p class="section-sub">The tools and technologies I work with daily.</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title"><i class="fas fa-code"></i> Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Java</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">SQL</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><i class="fas fa-server"></i> Backend</div>
+      <div class="skill-tags">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Spring MVC</span>
+        <span class="tag">Spring Data JPA</span>
+        <span class="tag">Hibernate</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Maven</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><i class="fas fa-layer-group"></i> Frontend</div>
+      <div class="skill-tags">
+        <span class="tag">Angular (v15+)</span>
+        <span class="tag">Angular Material</span>
+        <span class="tag">RxJS</span>
+        <span class="tag">Bootstrap</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><i class="fas fa-database"></i> Database</div>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Schema design</span>
+        <span class="tag">Query optimisation</span>
+        <span class="tag">Stored procedures</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><i class="fas fa-tools"></i> Tools</div>
+      <div class="skill-tags">
+        <span class="tag">Git / GitHub</span>
+        <span class="tag">STS</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Postman</span>
+        <span class="tag">MySQL Workbench</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><i class="fas fa-lightbulb"></i> Concepts</div>
+      <div class="skill-tags">
+        <span class="tag">OOP</span>
+        <span class="tag">DSA</span>
+        <span class="tag">Microservices</span>
+        <span class="tag">Agile / Scrum</span>
+        <span class="tag">JWT Auth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 — Experience</div>
+  <div class="section-title">Work history</div>
+  <p class="section-sub">Where I've built and shipped software.</p>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="tl-header">
+        <div class="tl-title">Programmer Analyst Trainee</div>
+        <div class="tl-date">Sept 2025 – Present</div>
+      </div>
+      <div class="tl-company">Cognizant Technology Solutions · Hyderabad, India</div>
+      <ul class="tl-list">
+        <li>Support and maintain enterprise EDI and ERP Java-based applications in production environments.</li>
+        <li>Monitor end-to-end workflows, resolve incidents within SLA, and perform root cause analysis.</li>
+        <li>Write and optimise SQL queries for data extraction, troubleshooting, and backend debugging.</li>
+        <li>Collaborate with development and business teams on defect tracking and deployment support.</li>
+        <li>Participate in Agile ceremonies ensuring timely delivery of enhancements across sprints.</li>
+        <li>Gained exposure to full stack architecture across Java backend services and Angular frontends.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-header">
+        <div class="tl-title">GenC Intern — Java Full Stack</div>
+        <div class="tl-date">May 2025 – Sept 2025</div>
+      </div>
+      <div class="tl-company">Cognizant Technology Solutions</div>
+      <ul class="tl-list">
+        <li>Completed intensive training in Core Java, Spring Boot, Angular, and SQL with enterprise coding standards.</li>
+        <li>Developed full stack applications following Agile methodology; practised Git branching and code review.</li>
+        <li>Built REST APIs using Spring Boot and consumed them in Angular apps with RxJS reactive programming.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-header">
+        <div class="tl-title">Full Stack Developer Intern</div>
+        <div class="tl-date">May 2024 – Aug 2024</div>
+      </div>
+      <div class="tl-company">APSCHE Full Stack Internship</div>
+      <ul class="tl-list">
+        <li>Built and deployed web applications using Angular (frontend) and Spring Boot (backend) with MySQL.</li>
+        <li>Improved backend–frontend integration through structured API design, enhancing performance and reliability.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">04 — Projects</div>
+  <div class="section-title">Things I've built</div>
+  <p class="section-sub">End-to-end applications demonstrating full stack capability.</p>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon"><i class="fas fa-university"></i></div>
+      <div class="project-name">Online Admission Management System</div>
+      <div class="project-desc">
+        A full stack secure admission portal with document upload, role-based access control, and full application lifecycle management (pending / approved / rejected).
+      </div>
+      <div class="project-stack">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Angular</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">REST APIs</span>
+      </div>
+      <div class="project-link">View source <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon"><i class="fas fa-sort-amount-up"></i></div>
+      <div class="project-name">Sorting Algorithm Visualizer</div>
+      <div class="project-desc">
+        An interactive visualiser built with vanilla HTML, CSS, and JavaScript featuring 5+ sorting algorithms with real-time animated comparisons, adjustable speed, and array size controls.
+      </div>
+      <div class="project-stack">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <a class="project-link" href="https://github.com/pranathi1703" target="_blank">View on GitHub <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+      <div class="project-name">E-Commerce Product Catalog & Cart</div>
+      <div class="project-desc">
+        A full stack e-commerce platform with product listing, category filtering, search, JWT-based authentication, and a dynamic shopping cart with real-time updates.
+      </div>
+      <div class="project-stack">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Angular</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">JWT</span>
+        <span class="tag">Spring Security</span>
+      </div>
+      <div class="project-link">View source <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">05 — Education</div>
+  <div class="section-title">Academic background</div>
+  <p class="section-sub">Where I learned the fundamentals.</p>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="edu-school">GIET Engineering College</div>
+      <div class="edu-degree">B.Tech in Information Technology</div>
+      <div class="edu-meta">
+        <span class="edu-score">CGPA 8.67</span>
+        <span class="edu-year">2021 – 2025</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon"><i class="fas fa-school"></i></div>
+      <div class="edu-school">Sri Sai Aditya Junior College</div>
+      <div class="edu-degree">Intermediate (MPC)</div>
+      <div class="edu-meta">
+        <span class="edu-score">96.6%</span>
+        <span class="edu-year">2019 – 2021</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon"><i class="fas fa-book-open"></i></div>
+      <div class="edu-school">Srividya High School</div>
+      <div class="edu-degree">SSC</div>
+      <div class="edu-meta">
+        <span class="edu-score">CGPA 9.8</span>
+        <span class="edu-year">2018 – 2019</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">06 — Contact</div>
+  <div class="section-title">Let's connect</div>
+  <div class="contact-box">
+    <p>
+      I'm actively looking for full stack developer roles. If you have an opportunity or just want to chat about tech, feel free to reach out.
+    </p>
+    <a class="btn btn-primary" href="mailto:pranathiakula35@gmail.com">
+      <i class="fas fa-envelope"></i> Send an email
+    </a>
+    <div class="contact-links">
+      <a class="contact-link" href="https://www.linkedin.com/in/pranathi-a-ap170304" target="_blank">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com/pranathi1703" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a class="contact-link" href="tel:9182479664">
+        <i class="fas fa-phone"></i> +91 9182479664
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built by Pranathi Akula · 2026</p>
+</footer>
+
+
+<div class="cursor"></div><div class="cursor2"></div>
+<script>
+const c=document.querySelector('.cursor'),c2=document.querySelector('.cursor2');
+document.addEventListener('mousemove',e=>{c.style.left=c2.style.left=e.clientX+'px';c.style.top=c2.style.top=e.clientY+'px';});
+document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));
+new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add('show'))).observe(document.body);
+document.querySelectorAll('section').forEach(s=>new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add('show'))).observe(s));
+</script>
+</body>
+</html>
