@@ -201,6 +201,15 @@
     color: transparent;
   }
 
+  .hero-role {
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 600;
+    color: #c9d5ff;
+    margin: -.35rem 0 1rem;
+    letter-spacing: .01em;
+  }
+
   .hero-tagline {
     font-size: 1rem;
     color: var(--muted);
@@ -743,6 +752,145 @@
     .hero-contacts { gap: .8rem; }
     .about-text p { text-align: left; }
   }
+
+  /* PROFESSIONAL PORTFOLIO ADDITIONS */
+  .about-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .55rem .8rem;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-highlights span {
+    font-size: .76rem;
+    color: #b7bdd0;
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+  }
+
+  .about-highlights i {
+    color: var(--mint);
+    font-size: .7rem;
+  }
+
+  .about-text strong {
+    color: #e0e3ef;
+    font-weight: 650;
+  }
+
+  .value-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .75rem;
+    margin-top: 1.5rem;
+  }
+
+  .value-strip > div {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(17,21,34,.48);
+    transition: .25s ease;
+  }
+
+  .value-strip > div:hover {
+    transform: translateY(-4px);
+    border-color: rgba(138,168,255,.22);
+  }
+
+  .value-icon {
+    color: var(--accent);
+    font-size: .85rem;
+    margin-bottom: .25rem;
+  }
+
+  .value-strip strong {
+    font-size: .8rem;
+    font-weight: 650;
+  }
+
+  .value-strip small {
+    color: var(--muted);
+    font-size: .68rem;
+    line-height: 1.45;
+  }
+
+  .project-role {
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--pink);
+    margin-top: -.2rem;
+    margin-bottom: .55rem;
+  }
+
+  .dsa-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1.25rem;
+    padding: 1.6rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, rgba(24,28,45,.78), rgba(17,21,34,.62));
+    box-shadow: var(--shadow);
+    transition: .25s ease;
+  }
+
+  .dsa-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(199,168,255,.22);
+  }
+
+  .dsa-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: rgba(199,168,255,.09);
+    color: var(--accent2);
+    font-size: 1.25rem;
+  }
+
+  .dsa-content h3 {
+    font-size: 1rem;
+    margin-bottom: .45rem;
+  }
+
+  .dsa-content p {
+    color: var(--muted);
+    font-size: .84rem;
+    line-height: 1.75;
+    max-width: 720px;
+  }
+
+  .dsa-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin: 1rem 0 1.1rem;
+  }
+
+  .dsa-btn {
+    width: fit-content;
+  }
+
+  @media (max-width: 760px) {
+    .value-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 520px) {
+    .about-highlights { grid-template-columns: 1fr; }
+    .value-strip { grid-template-columns: 1fr 1fr; }
+    .dsa-card { grid-template-columns: 1fr; }
+  }
+
 </style>
 
 <!-- Premium upgrade note -->
@@ -768,6 +916,7 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
+    <a href="#dsa">DSA</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
@@ -780,16 +929,19 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
   <span class="sparkle s3">♡</span>
   <span class="sparkle s4">✦</span>
   <div class="hero-inner">
-    <div class="hero-badge">Available for opportunities</div>
+    <div class="hero-badge">Open to Full Stack & Software Development Roles</div>
     <h1>
-      Hi, I'm <span class="name-accent">Pranathi Akula</span><br/>Java Full Stack Developer
+      Hi, I'm <span class="name-accent">Pranathi Akula</span>
     </h1>
+    <div class="hero-role">Java Full Stack Developer</div>
     <p class="hero-tagline">
-      Building secure, scalable enterprise applications — from Angular frontends to Spring Boot APIs and relational databases.
+      Java • Spring Boot • Angular • SQL
+      <br/>
+      Building reliable applications and solving problems one line of code at a time.
     </p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="#projects"><i class="fas fa-folder-open"></i> View Projects</a>
-      <a class="btn btn-secondary" href="#contact"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+      <a class="btn btn-primary" href="#projects"><i class="fas fa-code"></i> Explore My Work</a>
+      <a class="btn btn-secondary" href="#contact"><i class="fas fa-paper-plane"></i> Let's Connect</a>
     </div>
     <div class="hero-contacts">
       <a href="mailto:pranathiakula35@gmail.com"><i class="fas fa-envelope"></i> pranathiakula35@gmail.com</a>
@@ -807,22 +959,30 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
 <section id="about" class="reveal">
   <div class="section-label">01 — About</div>
   <div class="section-title">Who I am</div>
-  <p class="section-sub">A motivated developer who loves building things that work end-to-end.</p>
+  <p class="section-sub">A software engineer who enjoys turning requirements into reliable, maintainable products.</p>
   <div class="about-grid">
     <div class="about-text">
       <p>
-        I'm a Java Full Stack Developer currently working at Cognizant Technology Solutions as a Programmer Analyst Trainee,
-        where I support and maintain enterprise EDI and ERP Java-based applications in production environments.
+        I'm a Java Full Stack Developer currently working at
+        Cognizant Technology Solutions as a Programmer Analyst Trainee, supporting
+        enterprise EDI and ERP Java applications in production.
       </p>
       <p>
-        My stack spans Angular frontends, Spring Boot REST APIs, and relational databases (MySQL, PostgreSQL).
-        I'm comfortable across the full delivery lifecycle — from architecture decisions and API design to
-        incident management and Agile sprints.
+        My core stack is <strong>Java, Spring Boot, Angular, REST APIs, SQL and Git</strong>.
+        I work across backend services, frontend integration, database troubleshooting,
+        incident resolution and Agile delivery.
       </p>
       <p>
-        I graduated with a B.Tech in Information Technology (CGPA 8.67) from GIET Engineering College and
-        am actively looking for full stack developer roles where I can contribute to high-quality software delivery.
+        I enjoy solving problems with clean code and practical system design, and I'm
+        actively exploring Software Engineer and Full Stack Developer opportunities where
+        I can build scalable applications and keep growing as an engineer.
       </p>
+      <div class="about-highlights">
+        <span><i class="fas fa-check-circle"></i> Production experience</span>
+        <span><i class="fas fa-check-circle"></i> Java + Spring Boot</span>
+        <span><i class="fas fa-check-circle"></i> Angular + TypeScript</span>
+        <span><i class="fas fa-check-circle"></i> SQL + REST APIs</span>
+      </div>
     </div>
   </div>
 </section>
@@ -898,6 +1058,29 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
   </div>
 </section>
 
+<div class="value-strip reveal">
+  <div>
+    <span class="value-icon"><i class="fas fa-server"></i></span>
+    <strong>Backend</strong>
+    <small>Java · Spring Boot · REST</small>
+  </div>
+  <div>
+    <span class="value-icon"><i class="fas fa-laptop-code"></i></span>
+    <strong>Frontend</strong>
+    <small>Angular · TypeScript · RxJS</small>
+  </div>
+  <div>
+    <span class="value-icon"><i class="fas fa-database"></i></span>
+    <strong>Data</strong>
+    <small>SQL · MySQL · PostgreSQL</small>
+  </div>
+  <div>
+    <span class="value-icon"><i class="fas fa-puzzle-piece"></i></span>
+    <strong>Problem Solving</strong>
+    <small>DSA · Debugging · RCA</small>
+  </div>
+</div>
+
 <hr class="section-divider" />
 
 <!-- EXPERIENCE -->
@@ -963,6 +1146,7 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
     <div class="project-card">
       <div class="project-icon"><i class="fas fa-university"></i></div>
       <div class="project-name">Online Admission Management System</div>
+      <div class="project-role">Full Stack Web Application</div>
       <div class="project-desc">
         A full stack secure admission portal with document upload, role-based access control, and full application lifecycle management (pending / approved / rejected).
       </div>
@@ -972,12 +1156,13 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
         <span class="tag">MySQL</span>
         <span class="tag">REST APIs</span>
       </div>
-      <div class="project-link">View source <i class="fas fa-arrow-right"></i></div>
+      <a class="project-link" href="https://github.com/pranathi1703" target="_blank" rel="noopener noreferrer">View GitHub <i class="fas fa-arrow-right"></i></a>
     </div>
 
     <div class="project-card">
       <div class="project-icon"><i class="fas fa-sort-amount-up"></i></div>
       <div class="project-name">Sorting Algorithm Visualizer</div>
+      <div class="project-role">DSA Visualization Project</div>
       <div class="project-desc">
         An interactive visualiser built with vanilla HTML, CSS, and JavaScript featuring 5+ sorting algorithms with real-time animated comparisons, adjustable speed, and array size controls.
       </div>
@@ -992,6 +1177,7 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
     <div class="project-card">
       <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
       <div class="project-name">E-Commerce Product Catalog & Cart</div>
+      <div class="project-role">Full Stack Web Application</div>
       <div class="project-desc">
         A full stack e-commerce platform with product listing, category filtering, search, JWT-based authentication, and a dynamic shopping cart with real-time updates.
       </div>
@@ -1002,7 +1188,7 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
         <span class="tag">JWT</span>
         <span class="tag">Spring Security</span>
       </div>
-      <div class="project-link">View source <i class="fas fa-arrow-right"></i></div>
+      <a class="project-link" href="https://github.com/pranathi1703" target="_blank" rel="noopener noreferrer">View GitHub <i class="fas fa-arrow-right"></i></a>
     </div>
 
   </div>
@@ -1010,9 +1196,38 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
 
 <hr class="section-divider" />
 
+<!-- DSA / LEETCODE -->
+<section id="dsa" class="reveal">
+  <div class="section-label">05 — Problem Solving</div>
+  <div class="section-title">DSA & LeetCode</div>
+  <p class="section-sub">Strengthening algorithmic thinking alongside full stack development.</p>
+
+  <div class="dsa-card">
+    <div class="dsa-icon"><i class="fas fa-terminal"></i></div>
+    <div class="dsa-content">
+      <h3>Consistent problem solving</h3>
+      <p>
+        I practise data structures and algorithms on LeetCode, focusing on patterns such as
+        arrays, hashing, two pointers, sorting, binary search and other core interview topics.
+      </p>
+      <div class="dsa-tags">
+        <span class="tag">Arrays</span>
+        <span class="tag">Hashing</span>
+        <span class="tag">Two Pointers</span>
+        <span class="tag">Sorting</span>
+        <span class="tag">Binary Search</span>
+        <span class="tag">Complexity Analysis</span>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
 <!-- EDUCATION -->
 <section id="education" class="reveal">
-  <div class="section-label">05 — Education</div>
+  <div class="section-label">06 — Education</div>
   <div class="section-title">Academic background</div>
   <p class="section-sub">Where I learned the fundamentals.</p>
   <div class="edu-grid">
@@ -1050,11 +1265,11 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
 
 <!-- CONTACT -->
 <section id="contact" class="reveal">
-  <div class="section-label">06 — Contact</div>
+  <div class="section-label">07 — Contact</div>
   <div class="section-title">Let's connect</div>
   <div class="contact-box">
     <p>
-      I'm actively looking for full stack developer roles. If you have an opportunity or just want to chat about tech, feel free to reach out.
+      I'm currently exploring Software Engineer and Full Stack Developer opportunities. If you're hiring for Java, Spring Boot, Angular or backend-focused roles, I'd love to connect.
     </p>
     <a class="btn btn-primary" href="mailto:pranathiakula35@gmail.com">
       <i class="fas fa-envelope"></i> Send an email
@@ -1074,7 +1289,7 @@ body{background:linear-gradient(-45deg,#090b11,#131722,#1d2432,#0e1017);backgrou
 </section>
 
 <footer>
-  <p>Designed & built by Pranathi Akula <span>♡</span> · 2026</p>
+  <p>Designed & built by Pranathi Akula <span>♡</span> · Java · Spring Boot · Angular · 2026</p>
 </footer>
 
 
